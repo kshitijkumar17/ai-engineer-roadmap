@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Engineer Learning Roadmap</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --border: rgba(0,0,0,0.1);
+    --border-hover: rgba(0,0,0,0.2);
+    --text-primary: #1a1a18;
+    --text-secondary: #5a5a56;
+    --text-tertiary: #9a9a94;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+  }
+  body { font-family: 'Georgia', serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; padding: 32px 16px; }
+  .page { max-width: 760px; margin: 0 auto; }
+  .header { margin-bottom: 32px; }
+  .header h1 { font-family: 'Georgia', serif; font-size: 26px; font-weight: normal; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .header p { font-size: 14px; color: var(--text-secondary); font-family: sans-serif; }
+  .top-actions { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .stats { font-size: 13px; color: var(--text-secondary); font-family: sans-serif; }
+  .expand-all { font-size: 12px; font-family: sans-serif; color: var(--text-secondary); cursor: pointer; padding: 5px 12px; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); transition: background 0.15s; }
+  .expand-all:hover { background: var(--bg); }
+  .phase { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 16px; overflow: hidden; }
+  .phase-header { padding: 16px 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; transition: background 0.15s; user-select: none; }
+  .phase-header:hover { background: var(--bg); }
+  .phase-left { display: flex; align-items: center; gap: 12px; }
+  .phase-badge { font-size: 11px; font-family: sans-serif; font-weight: 600; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; white-space: nowrap; }
+  .phase-info { }
+  .phase-title { font-size: 15px; font-weight: normal; font-family: sans-serif; }
+  .phase-meta { font-size: 12px; color: var(--text-tertiary); font-family: sans-serif; margin-top: 2px; }
+  .chevron { font-size: 11px; color: var(--text-tertiary); transition: transform 0.2s; display: inline-block; }
+  .chevron.open { transform: rotate(180deg); }
+  .phase-body { display: none; border-top: 1px solid var(--border); }
+  .phase-body.open { display: block; }
+  .skill { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  .skill:last-child { border-bottom: none; }
+  .skill-row { display: flex; gap: 12px; }
+  .skill-num { font-size: 13px; color: var(--text-tertiary); font-family: sans-serif; min-width: 24px; padding-top: 1px; }
+  .skill-content { flex: 1; }
+  .skill-name { font-size: 14px; font-family: sans-serif; font-weight: 600; margin-bottom: 8px; }
+  .topics { list-style: none; margin-bottom: 12px; }
+  .topics li { font-size: 13px; color: var(--text-secondary); font-family: sans-serif; padding: 2px 0; display: flex; gap: 8px; line-height: 1.5; }
+  .topics li::before { content: "–"; color: var(--text-tertiary); flex-shrink: 0; }
+  .source-label { font-size: 11px; font-family: sans-serif; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; }
+  .sources { display: flex; flex-wrap: wrap; gap: 6px; }
+  .source-tag { font-size: 12px; font-family: sans-serif; padding: 4px 10px; border-radius: 20px; border: 1px solid; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: opacity 0.15s; }
+  .source-tag:hover { opacity: 0.75; }
+  .free-tag { background: #f0faf4; color: #2d7a4f; border-color: #a8dfc0; }
+  .paid-tag { background: #f0f5ff; color: #2d4fa8; border-color: #a8bdf0; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h1>AI Engineer — Complete Learning Roadmap</h1>
+    <p>6 phases · 26 skills · 5-6 months · From beginner to job-ready · 2026 edition</p>
+  </div>
+  <div class="top-actions">
+    <div class="stats">All skills, topics, and free/paid resources in one place</div>
+    <button class="expand-all" onclick="toggleAll()">Expand all</button>
+  </div>
+  <div id="roadmap"></div>
+</div>
+
+<script>
+const phases = [
+  {
+    id: 1, title: "Phase 1 — Python foundation", time: "3–4 weeks",
+    color: "#d4f5e9", textColor: "#1a5c3a", borderColor: "#7dd4b0",
+    skills: [
+      {
+        name: "Python basics",
+        topics: ["Variables, data types, operators","Conditionals and loops","Functions and scope","Lists, tuples, dictionaries, sets","String manipulation","File I/O (reading and writing files)","Error handling with try/except","Basic OOP — classes, objects, methods"],
+        sources: [
+          { label: "Free", name: "▶ freeCodeCamp — Python full course (4.5 hrs)", url: "https://www.youtube.com/watch?v=rfscVS0vtbw" },
+          { label: "Free", name: "▶ Corey Schafer — Python beginner playlist", url: "https://www.youtube.com/playlist?list=PL-osiE80TeTskrapNbzXhwoFUiLCjGgY7" },
+          { label: "Free", name: "📖 Automate the Boring Stuff (free book)", url: "https://automatetheboringstuff.com/" }
+        ]
+      },
+      {
+        name: "NumPy",
+        topics: ["Arrays and array operations","Indexing and slicing","Broadcasting","Matrix operations","Statistical functions (mean, std, etc.)"],
+        sources: [
+          { label: "Free", name: "▶ Keith Galli — NumPy tutorial (1 hr)", url: "https://www.youtube.com/watch?v=GB9ByFAIAH4" },
+          { label: "Free", name: "▶ freeCodeCamp — NumPy crash course", url: "https://www.youtube.com/watch?v=QUT1VHiLmmI" }
+        ]
+      },
+      {
+        name: "Pandas",
+        topics: ["Series and DataFrames","Reading CSV, JSON, Excel files","Filtering, sorting, grouping data","Handling missing values","Merging and joining DataFrames","Basic data cleaning"],
+        sources: [
+          { label: "Free", name: "▶ Corey Schafer — Pandas playlist (10 videos)", url: "https://www.youtube.com/playlist?list=PL-osiE80TeTsWmV9i9c58mdDCSskIFdDS" },
+          { label: "Free", name: "🎮 Kaggle Pandas course (free + interactive)", url: "https://www.kaggle.com/learn/pandas" }
+        ]
+      },
+      {
+        name: "Matplotlib & visualization",
+        topics: ["Line, bar, scatter, histogram charts","Subplots and figure customization","Seaborn for statistical plots","Visualizing data distributions"],
+        sources: [
+          { label: "Free", name: "▶ Corey Schafer — Matplotlib playlist", url: "https://www.youtube.com/playlist?list=PL-osiE80TeTvipOqomVEeZ1HRrcEvtZB_" },
+          { label: "Free", name: "▶ freeCodeCamp — Data Analysis with Python (NumPy + Pandas + Matplotlib)", url: "https://www.youtube.com/watch?v=r-uOLxNrNk8" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 2, title: "Phase 2 — Machine learning basics", time: "4–5 weeks",
+    color: "#dceeff", textColor: "#1a3a6e", borderColor: "#90bef5",
+    skills: [
+      {
+        name: "Core ML concepts",
+        topics: ["Supervised vs unsupervised vs reinforcement learning","Training, validation, test sets","Overfitting and underfitting","Bias-variance tradeoff","Cross-validation","Evaluation metrics: accuracy, precision, recall, F1, ROC-AUC"],
+        sources: [
+          { label: "Free", name: "▶ StatQuest — Machine Learning playlist (Josh Starmer)", url: "https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF" },
+          { label: "Free", name: "▶ Google ML Crash Course (free)", url: "https://developers.google.com/machine-learning/crash-course" }
+        ]
+      },
+      {
+        name: "Supervised learning algorithms",
+        topics: ["Linear regression","Logistic regression","Decision trees and random forests","Gradient boosting (XGBoost, LightGBM)","Support vector machines (SVM)","K-nearest neighbours (KNN)"],
+        sources: [
+          { label: "Free", name: "▶ StatQuest — individual algorithm explainers", url: "https://www.youtube.com/@statquest/playlists" },
+          { label: "Free", name: "▶ Krish Naik — ML algorithms full playlist", url: "https://www.youtube.com/playlist?list=PLZoTAELRMXVPjaAzURB77Kz0YXxj65tYz" }
+        ]
+      },
+      {
+        name: "Unsupervised learning",
+        topics: ["K-means clustering","Hierarchical clustering","PCA (Principal Component Analysis)","Dimensionality reduction concepts"],
+        sources: [
+          { label: "Free", name: "▶ StatQuest — PCA clearly explained", url: "https://www.youtube.com/watch?v=FgakZw6K1QQ" },
+          { label: "Free", name: "▶ StatQuest — K-means clustering", url: "https://www.youtube.com/watch?v=4b5d3muPQmA" }
+        ]
+      },
+      {
+        name: "Deep learning fundamentals",
+        topics: ["Neural networks — neurons, layers, activation functions","Forward pass and backpropagation","Loss functions (MSE, cross-entropy)","Optimizers: SGD, Adam, RMSprop","Batch size, epochs, learning rate","CNNs — for image tasks","RNNs and LSTMs — for sequential data","PyTorch basics (tensors, autograd, training loop)"],
+        sources: [
+          { label: "Free", name: "▶ 3Blue1Brown — Neural networks series (animations)", url: "https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi" },
+          { label: "Free", name: "▶ Andrej Karpathy — Neural networks: zero to hero", url: "https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" },
+          { label: "Free", name: "▶ Daniel Bourke — PyTorch for deep learning (26 hrs)", url: "https://www.youtube.com/watch?v=Z_ikDlimN6A" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 3, title: "Phase 3 — NLP & transformers", time: "3–4 weeks",
+    color: "#ece8fd", textColor: "#3a2870", borderColor: "#b8aef0",
+    skills: [
+      {
+        name: "NLP fundamentals",
+        topics: ["Tokenization (word, subword, character)","Text preprocessing — stopwords, stemming, lemmatization","Bag-of-words and TF-IDF","Word embeddings: Word2Vec, GloVe, FastText","Sentiment analysis","Named entity recognition (NER)","Text classification"],
+        sources: [
+          { label: "Free", name: "▶ freeCodeCamp — NLP with Python full course", url: "https://www.youtube.com/watch?v=X2vAabgKiuM" },
+          { label: "Free", name: "🎮 HuggingFace NLP course (free + interactive)", url: "https://huggingface.co/learn/nlp-course/chapter1/1" }
+        ]
+      },
+      {
+        name: "Transformer architecture",
+        topics: ["Attention mechanism — self-attention, multi-head attention","Encoder and decoder stacks","Positional encoding","BERT — bidirectional pretraining, masked LM","GPT — causal language modeling, next-token prediction","T5, BART — seq-to-seq models","How fine-tuning works","LoRA and PEFT — efficient fine-tuning techniques"],
+        sources: [
+          { label: "Free", name: "▶ Andrej Karpathy — Let's build GPT from scratch", url: "https://www.youtube.com/watch?v=kCc8FmEb1nY" },
+          { label: "Free", name: "📖 The Illustrated Transformer — Jay Alammar (blog)", url: "https://jalammar.github.io/illustrated-transformer/" },
+          { label: "Free", name: "▶ Umar Jamil — Attention is all you need (paper walkthrough)", url: "https://www.youtube.com/watch?v=bCz4OMemCcA" }
+        ]
+      },
+      {
+        name: "Hugging Face ecosystem",
+        topics: ["Loading pretrained models with from_pretrained()","Pipelines for quick inference","Tokenizers library","Datasets library — loading, processing","Model Hub — finding and sharing models","Running fine-tuning with Trainer API","Inference with AutoModel, AutoTokenizer"],
+        sources: [
+          { label: "Free", name: "🎮 HuggingFace official course (free)", url: "https://huggingface.co/learn/nlp-course" },
+          { label: "Free", name: "▶ Abhishek Thakur — HuggingFace Transformers tutorial", url: "https://www.youtube.com/watch?v=DpwUVExX27E" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 4, title: "Phase 4 — LLM applications (most critical)", time: "4–6 weeks",
+    color: "#fff3dc", textColor: "#5a3800", borderColor: "#f5c870",
+    skills: [
+      {
+        name: "LLM APIs",
+        topics: ["OpenAI API — chat completions, function calling, vision","Anthropic API — Claude messages API","Google Gemini API","API authentication, rate limits, error handling","Streaming responses","Structured outputs / JSON mode","Comparing models: GPT-4o vs Claude vs Gemini"],
+        sources: [
+          { label: "Free", name: "▶ AssemblyAI — OpenAI API crash course", url: "https://www.youtube.com/watch?v=JTxsNm9IdYU" },
+          { label: "Free", name: "📖 OpenAI Cookbook — code examples for every API feature", url: "https://github.com/openai/openai-cookbook" },
+          { label: "Free", name: "📖 Anthropic API docs + prompt library", url: "https://docs.anthropic.com/" }
+        ]
+      },
+      {
+        name: "Prompt engineering",
+        topics: ["Zero-shot, one-shot, few-shot prompting","Chain-of-thought (CoT) prompting","System prompts and role setup","Prompt templates and variables","Output formatting — markdown, JSON, XML","Avoiding hallucinations — grounding techniques","Prompt injection and security basics"],
+        sources: [
+          { label: "Free", name: "▶ DeepLearning.AI — ChatGPT Prompt Engineering for Developers", url: "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" },
+          { label: "Free", name: "📖 DAIR.AI — Prompt Engineering Guide", url: "https://www.promptingguide.ai/" },
+          { label: "Free", name: "📖 Anthropic prompt engineering guide", url: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" }
+        ]
+      },
+      {
+        name: "Embeddings & vector databases",
+        topics: ["What embeddings are and why they matter","Generating embeddings with OpenAI / sentence-transformers","Cosine similarity and nearest neighbour search","Vector databases: Pinecone, Weaviate, ChromaDB, pgvector","Indexing documents for retrieval","Metadata filtering in vector search","Chunking strategies for documents"],
+        sources: [
+          { label: "Free", name: "▶ AssemblyAI — Vector databases explained", url: "https://www.youtube.com/watch?v=dN0lsF2cvm4" },
+          { label: "Free", name: "▶ James Briggs — Pinecone + embeddings tutorial playlist", url: "https://www.youtube.com/playlist?list=PLIUOU7oqGTLhlWpTz4NnuioIvi2vJ0YLg" },
+          { label: "Free", name: "📖 Pinecone learning centre (free)", url: "https://www.pinecone.io/learn/" }
+        ]
+      },
+      {
+        name: "RAG (Retrieval-Augmented Generation)",
+        topics: ["Why RAG — solving LLM knowledge cutoff limits","RAG pipeline: load → chunk → embed → store → retrieve → generate","Document loaders (PDF, web, CSV)","Chunking strategies — fixed size, semantic, recursive","Retrieval: dense vs sparse vs hybrid search","Reranking retrieved results","Evaluating RAG quality — faithfulness, relevance","Advanced RAG — multi-query retrieval, HyDE"],
+        sources: [
+          { label: "Free", name: "▶ freeCodeCamp — RAG from scratch (full course)", url: "https://www.youtube.com/watch?v=sVcwVQRHIc8" },
+          { label: "Free", name: "▶ DeepLearning.AI — LangChain: Chat with Your Data (free)", url: "https://www.deeplearning.ai/short-courses/langchain-chat-with-your-data/" },
+          { label: "Free", name: "▶ Krish Naik — RAG pipeline tutorial", url: "https://www.youtube.com/watch?v=Yhtjd7yGGGA" }
+        ]
+      },
+      {
+        name: "LangChain",
+        topics: ["LangChain architecture — chains, runnables, LCEL","Prompt templates and output parsers","Document loaders and text splitters","Retrieval chains","Memory — conversation buffer, summary memory","Tool calling and function binding","LangSmith — tracing and debugging chains"],
+        sources: [
+          { label: "Free", name: "▶ DeepLearning.AI — LangChain for LLM Application Development (free)", url: "https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/" },
+          { label: "Free", name: "▶ freeCodeCamp — LangChain crash course (1 hr)", url: "https://www.youtube.com/watch?v=lG7Uxts9SXs" },
+          { label: "Free", name: "📖 LangChain official docs + tutorials", url: "https://python.langchain.com/docs/tutorials/" }
+        ]
+      },
+      {
+        name: "AI agents",
+        topics: ["What agents are — LLMs that use tools and loop","ReAct pattern — reason + act loop","Tool use: web search, calculator, code execution","OpenAI Agents SDK","LangGraph — stateful, multi-step agents","CrewAI — multi-agent collaboration","Agent memory: short-term vs long-term","Evaluating and debugging agents"],
+        sources: [
+          { label: "Free", name: "▶ DeepLearning.AI — AI Agents in LangGraph (free)", url: "https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/" },
+          { label: "Free", name: "▶ DeepLearning.AI — Multi AI Agent Systems with CrewAI (free)", url: "https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/" },
+          { label: "Free", name: "▶ freeCodeCamp — LangGraph full course", url: "https://www.youtube.com/watch?v=jGg_1h3UBuo" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 5, title: "Phase 5 — Engineering & deployment", time: "3–4 weeks",
+    color: "#fde8e0", textColor: "#5a1e0e", borderColor: "#f0a080",
+    skills: [
+      {
+        name: "Git & GitHub",
+        topics: ["git init, add, commit, push, pull","Branching and merging","Pull requests and code reviews","Resolving merge conflicts",".gitignore and managing secrets","GitHub Actions basics"],
+        sources: [
+          { label: "Free", name: "▶ freeCodeCamp — Git & GitHub full course (1 hr)", url: "https://www.youtube.com/watch?v=RGOj5yH7evk" },
+          { label: "Free", name: "▶ Fireship — Git explained in 100 seconds", url: "https://www.youtube.com/watch?v=hwP7WQkmECE" }
+        ]
+      },
+      {
+        name: "FastAPI",
+        topics: ["Creating REST APIs in Python","Path parameters, query params, request body","Pydantic models for validation","Async endpoints","Dependency injection","API documentation with Swagger UI","Wrapping an LLM chain in an API endpoint"],
+        sources: [
+          { label: "Free", name: "▶ freeCodeCamp — FastAPI full course (1.5 hrs)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA" },
+          { label: "Free", name: "▶ Traversy Media — FastAPI crash course", url: "https://www.youtube.com/watch?v=tLKKmouUams" },
+          { label: "Free", name: "📖 FastAPI official docs (best docs in Python ecosystem)", url: "https://fastapi.tiangolo.com/" }
+        ]
+      },
+      {
+        name: "Streamlit / Gradio",
+        topics: ["Building quick AI demo UIs with Streamlit","Chat UI with st.chat_message","File upload components","Connecting a LangChain app to a Streamlit frontend","Gradio as an alternative for quick demos","Deploying to Streamlit Cloud (free)"],
+        sources: [
+          { label: "Free", name: "▶ freeCodeCamp — Streamlit full course", url: "https://www.youtube.com/watch?v=VqgUkExPvLY" },
+          { label: "Free", name: "▶ Nicholas Renotte — Build AI apps with Streamlit", url: "https://www.youtube.com/watch?v=hTONmNnHPYE" },
+          { label: "Free", name: "📖 Streamlit official docs + gallery", url: "https://docs.streamlit.io/" }
+        ]
+      },
+      {
+        name: "Docker",
+        topics: ["What containers are and why they matter","Writing a Dockerfile","docker build, run, ps, stop commands","Environment variables and .env files in Docker","Docker Compose for multi-service apps","Building a Docker image of your FastAPI + LLM app"],
+        sources: [
+          { label: "Free", name: "▶ TechWorld with Nana — Docker full course (3 hrs)", url: "https://www.youtube.com/watch?v=3c-iBn73dDE" },
+          { label: "Free", name: "▶ Fireship — Docker in 100 seconds", url: "https://www.youtube.com/watch?v=Gjnup-PuquQ" }
+        ]
+      },
+      {
+        name: "SQL & relational databases",
+        topics: ["SELECT, WHERE, ORDER BY, LIMIT","JOINs — INNER, LEFT, RIGHT, FULL","GROUP BY and aggregate functions","Subqueries and CTEs","Indexes and query optimization basics","PostgreSQL setup and basic commands","Connecting Python to PostgreSQL with SQLAlchemy"],
+        sources: [
+          { label: "Free", name: "🎮 SQLBolt — interactive SQL lessons (best for beginners)", url: "https://sqlbolt.com/" },
+          { label: "Free", name: "▶ freeCodeCamp — SQL full course (4 hrs)", url: "https://www.youtube.com/watch?v=HXV3zeQKqGY" },
+          { label: "Free", name: "🎮 SQLZoo — interactive SQL practice", url: "https://sqlzoo.net/" }
+        ]
+      },
+      {
+        name: "Cloud basics (AWS or Azure)",
+        topics: ["Core services: compute (EC2/VMs), storage (S3/Blob), databases (RDS)","IAM — users, roles, permissions","Deploying a Docker container to the cloud (ECS or Azure Container Apps)","Environment variables and secrets management","Basic networking: VPCs, subnets, security groups","Azure OpenAI Service (if using Azure path)","AWS Bedrock (if using AWS path)"],
+        sources: [
+          { label: "Free", name: "▶ freeCodeCamp — AWS full course for beginners (5 hrs)", url: "https://www.youtube.com/watch?v=ulprqHHWlng" },
+          { label: "Free", name: "▶ TechWorld with Nana — AWS beginner crash course", url: "https://www.youtube.com/watch?v=7-31KgImGgU" },
+          { label: "Free", name: "📖 AWS Cloud Practitioner Essentials (free on AWS)", url: "https://explore.skillbuilder.aws/learn/course/external/view/elearning/134/aws-cloud-practitioner-essentials" }
+        ]
+      }
+    ]
+  },
+  {
+    id: 6, title: "Phase 6 — Portfolio projects", time: "4–6 weeks",
+    color: "#efefec", textColor: "#2a2a28", borderColor: "#c0c0b8",
+    skills: [
+      {
+        name: "Project 1 — RAG chatbot over documents",
+        topics: ["Build a chatbot that answers questions from uploaded PDFs","Stack: LangChain + ChromaDB + FastAPI + Streamlit","Features: multi-doc support, source citation, chat history","Deploy on Streamlit Cloud (free)"],
+        sources: [
+          { label: "Free", name: "▶ freeCodeCamp — RAG chatbot from scratch", url: "https://www.youtube.com/watch?v=sVcwVQRHIc8" },
+          { label: "Free", name: "▶ Krish Naik — End-to-end RAG project tutorial", url: "https://www.youtube.com/watch?v=Yhtjd7yGGGA" }
+        ]
+      },
+      {
+        name: "Project 2 — AI agent with tools",
+        topics: ["Build an agent that can search the web, run Python code, and query a database","Stack: LangGraph + OpenAI + FastAPI","Features: multi-step reasoning, tool selection, error recovery","Deploy with Docker on a free cloud VM"],
+        sources: [
+          { label: "Free", name: "▶ DeepLearning.AI — AI Agents in LangGraph (free short course)", url: "https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/" },
+          { label: "Free", name: "▶ freeCodeCamp — Build AI agents with LangGraph", url: "https://www.youtube.com/watch?v=jGg_1h3UBuo" }
+        ]
+      },
+      {
+        name: "Project 3 — Full-stack AI app (portfolio centrepiece)",
+        topics: ["Build a complete production-like app: AI writing assistant, customer support bot, or data analysis tool","Stack: Streamlit frontend + FastAPI backend + PostgreSQL + LLM + Docker","Deploy on AWS free tier or Render (free)","Add auth, logging, and basic monitoring","Write a clear README and push to GitHub"],
+        sources: [
+          { label: "Free", name: "▶ Nicholas Renotte — Full stack AI app tutorial", url: "https://www.youtube.com/watch?v=hTONmNnHPYE" },
+          { label: "Free", name: "📖 Full stack FastAPI template (GitHub)", url: "https://github.com/tiangolo/full-stack-fastapi-template" }
+        ]
+      }
+    ]
+  }
+];
+
+let allOpen = false;
+let globalSkillNum = 1;
+
+function toggleAll() {
+  allOpen = !allOpen;
+  document.querySelectorAll('.phase-body').forEach(b => b.classList.toggle('open', allOpen));
+  document.querySelectorAll('.chevron').forEach(c => c.classList.toggle('open', allOpen));
+  document.querySelector('.expand-all').textContent = allOpen ? 'Collapse all' : 'Expand all';
+}
+
+function togglePhase(id) {
+  const body = document.getElementById('body-' + id);
+  const chev = document.getElementById('chev-' + id);
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+
+let skillCounter = 1;
+const roadmap = document.getElementById('roadmap');
+roadmap.innerHTML = phases.map(phase => {
+  const skillsHTML = phase.skills.map(skill => {
+    const num = skillCounter++;
+    return `<div class="skill">
+      <div class="skill-row">
+        <span class="skill-num">${num}.</span>
+        <div class="skill-content">
+          <div class="skill-name">${skill.name}</div>
+          <ul class="topics">${skill.topics.map(t => `<li>${t}</li>`).join('')}</ul>
+          <div class="source-label">Where to learn</div>
+          <div class="sources">${skill.sources.map(s => `<a class="source-tag ${s.label === 'Free' ? 'free-tag' : 'paid-tag'}" href="${s.url}" target="_blank">${s.label === 'Free' ? '🆓' : '💰'} ${s.name}</a>`).join('')}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  return `<div class="phase">
+    <div class="phase-header" onclick="togglePhase(${phase.id})">
+      <div class="phase-left">
+        <span class="phase-badge" style="background:${phase.color};color:${phase.textColor};border:1px solid ${phase.borderColor}">Phase ${phase.id}</span>
+        <div class="phase-info">
+          <div class="phase-title">${phase.title}</div>
+          <div class="phase-meta">${phase.skills.length} skills · ${phase.time}</div>
+        </div>
+      </div>
+      <span class="chevron" id="chev-${phase.id}">▼</span>
+    </div>
+    <div class="phase-body" id="body-${phase.id}">${skillsHTML}</div>
+  </div>`;
+}).join('');
+
+// document.getElementById('body-1').classList.add('open');
+// document.getElementById('chev-1').classList.add('open');
+</script>
+</body>
+</html>
